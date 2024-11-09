@@ -3,16 +3,15 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { UserList } from "../user/UserList";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-export const Following = () => {
+export const Followers = () => {
   // Variable para almacenar el token para las peticiones a realizar en este componente
   const token = localStorage.getItem("token");
 
   // Se recibe la información desde el Contexto a través del hook useAuth
-  const { auth, setCounters } = useAuth();
+  const { auth } = useAuth();
 
-  // Estado para guardar el array de usuarios que sigues recibido desde el backend
+  // Estado para guardar el array de seguidores recibido desde el backend
   const [users, setUsers] = useState([]);
 
   // Estado para guardar la página actual y se va actualizando al hacer clic en el botón mostrar más
@@ -32,15 +31,15 @@ export const Following = () => {
     getUsers(1);
   }, []);
 
-  // Método para hacer la petición al Backend y obtener los usuarios que sigues
+  // Método para hacer la petición al Backend y obtener los usuarios que me siguen
   const getUsers = async (nextPaginate = 1) => {
     try {
       // Obtener el userId desde la url
       const userId = params.userId;
 
-      // Petición al Backend para obtener los usuarios que sigues desde la BD del API Backend - page actualiza la pagina a mostrar
+      // Petición al Backend para obtener los usuarios que me siguen desde la BD del API Backend - page actualiza la pagina a mostrar
       const response = await fetch(
-        Global.url + "follow/following/" + userId + "/" + nextPaginate,
+        Global.url + "contact/contacts/" + userId + "/" + nextPaginate,
         {
           method: "GET",
           headers: {
@@ -53,14 +52,14 @@ export const Following = () => {
       // Obtener la información retornada por la request
       const data = await response.json();
 
-      // Recorrer y limpiar follows para quedarme con followed
+      // Recorrer y limpiar follows para quedarme con followed_id (seguidores)
       let cleanUsers = [];
       data.follows.forEach((follow) => {
-        cleanUsers = [...cleanUsers, follow.followed_user];
+        cleanUsers = [...cleanUsers, follow.followed_id]; // Acceder a followed_id
       });
       data.users = cleanUsers;
 
-      // Usar la variable de estado para asignar el array de usuarios que sigues recibido
+      // Usar la variable de estado para asignar el array de usuarios que me siguen recibido
       if (data.users && data.status === "success") {
         let newUsers = data.users;
 
@@ -69,11 +68,10 @@ export const Following = () => {
         }
         setUsers(newUsers);
 
-        // Asignamos a la variable de estado following, el array de seguidores que me devolvió el backend
-        setFollowing(data.users_following);
+        // Asignamos a la variable de estado following, el array de usuarios que me sigue
+        setFollowing(data.user_contact_me);
 
         // Paginación. Comprobar si existen más usuarios para mostrar en la respuesta de la petición
-        // (data.totalDocs - 5) porque el listado de usuarios ya tiene 5 usuarios en pantalla que no está contabilizando en user.length
         if (users.length >= data.total - 5) {
           setMore(false);
         }
@@ -87,24 +85,13 @@ export const Following = () => {
     <>
       <header className="content__header">
         <h1 className="content__title">
-          Usuarios que sigue {auth.name} {auth.last_name}{" "}
+          Seguidores de {auth.name} {auth.last_name}{" "}
         </h1>
       </header>
-
-      {/* Si no sigue a ningún usuario, mostrar el mensaje */}
+      {/* Si no tienes seguidores, mostrar el mensaje */}
       {users.length === 0 ? (
-        <div className="no-following-message">
-          <h3>
-            Aún no sigues a ningún usuario en la red social, puedes hacer clic
-            en
-            <strong>
-              <Link to="/rsocial/gente" className="highlight-gente">
-                {" "}
-                Gente{" "}
-              </Link>
-            </strong>
-            para ver el listado de usuarios y seguir a quienes te interese.
-          </h3>
+        <div className="no-followers-message">
+          <h3>Aún no tienes seguidores en la red social.</h3>
         </div>
       ) : (
         <UserList
@@ -115,7 +102,6 @@ export const Following = () => {
           more={more}
           page={page}
           setPage={setPage}
-          setCounters={setCounters}
         />
       )}
     </>

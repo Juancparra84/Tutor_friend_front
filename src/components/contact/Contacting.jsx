@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { UserList } from "../user/UserList";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export const Followers = () => {
+export const Following = () => {
   // Variable para almacenar el token para las peticiones a realizar en este componente
   const token = localStorage.getItem("token");
 
   // Se recibe la información desde el Contexto a través del hook useAuth
-  const { auth } = useAuth();
+  const { auth, setCounters } = useAuth();
 
   // Estado para guardar el array de usuarios que sigues recibido desde el backend
   const [users, setUsers] = useState([]);
@@ -39,7 +40,7 @@ export const Followers = () => {
 
       // Petición al Backend para obtener los usuarios que sigues desde la BD del API Backend - page actualiza la pagina a mostrar
       const response = await fetch(
-        Global.url + "follow/followers/" + userId + "/" + nextPaginate,
+        Global.url + "fcontact/contacting/" + userId + "/" + nextPaginate,
         {
           method: "GET",
           headers: {
@@ -52,10 +53,10 @@ export const Followers = () => {
       // Obtener la información retornada por la request
       const data = await response.json();
 
-      // Recorrer y limpiar follows para quedarme con followed
+      // Recorrer y limpiar contacts para quedarme con la información de followed_id (usuario seguido)
       let cleanUsers = [];
-      data.follows.forEach((follow) => {
-        cleanUsers = [...cleanUsers, follow.following_user];
+      data.contacts.forEach((contact) => {
+        cleanUsers = [...cleanUsers, contact.followed_id];
       });
       data.users = cleanUsers;
 
@@ -68,11 +69,10 @@ export const Followers = () => {
         }
         setUsers(newUsers);
 
-        // Asignamos a la variable de estado following, el array de seguidores que me devolvió el backend
-        setFollowing(data.users_following);
+        // Asignamos a la variable de estado following, el array de usuarios que me devolvió el backend
+        setFollowing(data.users_contacting);
 
         // Paginación. Comprobar si existen más usuarios para mostrar en la respuesta de la petición
-        // (data.totalDocs - 5) porque el listado de usuarios ya tiene 5 usuarios en pantalla que no está contabilizando en user.length
         if (users.length >= data.total - 5) {
           setMore(false);
         }
@@ -86,13 +86,24 @@ export const Followers = () => {
     <>
       <header className="content__header">
         <h1 className="content__title">
-          Seguidores de {auth.name} {auth.last_name}{" "}
+          Usuarios que sigue {auth.name} {auth.last_name}{" "}
         </h1>
       </header>
-      {/* Si no tienes seguidores, mostrar el mensaje */}
+
+      {/* Si no sigue a ningún usuario, mostrar el mensaje */}
       {users.length === 0 ? (
-        <div className="no-followers-message">
-          <h3>Aún no tienes seguidores en la red social.</h3>
+        <div className="no-following-message">
+          <h3>
+            Aún no sigues a ningún usuario en la red social, puedes hacer clic
+            en
+            <strong>
+              <Link to="/rsocial/gente" className="highlight-gente">
+                {" "}
+                Gente{" "}
+              </Link>
+            </strong>
+            para ver el listado de usuarios y seguir a quienes te interese.
+          </h3>
         </div>
       ) : (
         <UserList
@@ -103,6 +114,7 @@ export const Followers = () => {
           more={more}
           page={page}
           setPage={setPage}
+          setCounters={setCounters}
         />
       )}
     </>

@@ -1,19 +1,19 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { PublicLayout } from '../components/layouts/public/PublicLayout';
 import { PrivateLayout } from '../components/layouts/private/PrivateLayout';
-import { Login } from '../components/user/Login';
-import { Register } from '../components/user/Register';
-import { Feed } from '../components/content/Feed';
 import { Error404 } from '../components/layouts/Error404';
 import { AuthProvider } from '../context/AuthProvider';
+import { Login } from '../components/user/Login';
+import { Profile } from '../components/user/Profile';
+import { Register } from '../components/user/Register';
 import { Logout } from '../components/user/Logout';
 import { People } from '../components/user/People';
 import { Config } from '../components/user/Config';
-import { Following } from '../components/follow/Following';
-import { Followers } from '../components/follow/Followers';
-import { Profile } from '../components/user/Profile';
+import { Following } from '../components/contact/Contacting';
+import { Followers } from '../components/contact/Contact_me';
 import { MyPublications } from '../components/content/MyPublications';
 import { PublicationDetail } from '../components/content/PublicationDetail';
+import { Feed } from '../components/content/Feed';
 
 
 export const Routing = () => {
