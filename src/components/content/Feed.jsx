@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { Global } from '../../helpers/Global';
-import { PublicationList } from '../publication/PublicationList';
+import { ContentList } from '../content/ContentList';
 
 export const Feed = () => {
 
@@ -21,7 +21,7 @@ export const Feed = () => {
             nextPage = 1;
         }
 
-        const request = await fetch(Global.url + "publication/feed/" + nextPage, {
+        const request = await fetch(Global.url + "content/feed/" + nextPage, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -58,7 +58,7 @@ export const Feed = () => {
                 <button className="content__button" onClick={() => getPublications(1, true)}>Mostrar nuevas</button>
             </header>
 
-            <PublicationList
+            <ContentList
                 publications={publications}
                 getPublications={getPublications}
                 page={page}

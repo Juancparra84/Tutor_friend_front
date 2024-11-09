@@ -3,7 +3,7 @@ import { PublicLayout } from '../components/layouts/public/PublicLayout';
 import { PrivateLayout } from '../components/layouts/private/PrivateLayout';
 import { Login } from '../components/user/Login';
 import { Register } from '../components/user/Register';
-import { Feed } from '../components/publication/Feed';
+import { Feed } from '../components/content/Feed';
 import { Error404 } from '../components/layouts/Error404';
 import { AuthProvider } from '../context/AuthProvider';
 import { Logout } from '../components/user/Logout';
@@ -12,8 +12,8 @@ import { Config } from '../components/user/Config';
 import { Following } from '../components/follow/Following';
 import { Followers } from '../components/follow/Followers';
 import { Profile } from '../components/user/Profile';
-import { MyPublications } from '../components/publication/MyPublications';
-import { PublicationDetail } from '../components/publication/PublicationDetail';
+import { MyPublications } from '../components/content/MyPublications';
+import { PublicationDetail } from '../components/content/PublicationDetail';
 
 
 export const Routing = () => {

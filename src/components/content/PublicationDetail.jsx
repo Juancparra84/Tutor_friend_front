@@ -16,7 +16,7 @@ export const PublicationDetail = () => {
   const getPublication = async () => {
     try {
       const token = localStorage.getItem('token');
-      const request = await fetch(`${Global.url}publication/show-publication/${id}`, {
+      const request = await fetch(`${Global.url}content/show-content/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export const PublicationDetail = () => {
       const data = await request.json();
 
       // Verificar que la respuesta contenga la publicación y el usuario
-      if (data.status === 'success' && data.publication && data.publication.user_id) {
+      if (data.status === 'success' && data.publication && data.publication.user) {
         setPublication(data.publication);
       } else {
         console.error("Error: publicación o usuario no encontrados.");
@@ -47,7 +47,7 @@ export const PublicationDetail = () => {
   }
 
   // Verificar que los datos del usuario estén disponibles
-  const user = publication.user_id || {}; // Si `user_id` no está definido, asigna un objeto vacío
+  const user = publication.user || {}; // Si `user` no está definido, asigna un objeto vacío
   const userImage = user.image && user.image !== "default.png" ? user.image : avatar; // Imagen predeterminada si no hay imagen
   const userName = `${user.name || "Usuario"} ${user.last_name || ""}`; // Nombre predeterminado si no hay datos
   const userNick = user.nick || "usuario"; // Nick predeterminado si no hay datos

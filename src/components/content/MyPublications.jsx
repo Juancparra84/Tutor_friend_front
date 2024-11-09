@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
-import { PublicationList } from '../publication/PublicationList';
+import { ContentList } from './ContentList';
 import { Global } from '../../helpers/Global';
 import { useLocation } from 'react-router-dom';
 
@@ -22,7 +22,7 @@ export const MyPublications = () => {
 
   const getPublications = async (nextPage = 1, reset = false) => {
     const token = localStorage.getItem('token');
-    const request = await fetch(`${Global.url}publication/publications-user/${auth._id}/${nextPage}`, {
+    const request = await fetch(`${Global.url}content/contents-user/${auth._id}/${nextPage}`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export const MyPublications = () => {
         <h1 className="content__title">Mis Publicaciones</h1>
       </header>
 
-      <PublicationList
+      <ContentList
         publications={publications}
         getPublications={getPublications}
         page={page}

@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { Global } from '../../helpers/Global';
 import { Link } from "react-router-dom";
 import useAuth from '../../hooks/useAuth';
-import { PublicationList } from '../publication/PublicationList';
+import { ContentList } from '../content/ContentList';
 
 export const Profile = () => {
 
@@ -96,7 +96,7 @@ export const Profile = () => {
     }
 
     const getPublications = async (nextPage = 1, newProfile = false) => {
-        const request = await fetch(Global.url + "publication/user/" + params.userId + "/" + nextPage, {
+        const request = await fetch(Global.url + "content/contents-user/" + params.userId + "/" + nextPage, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -194,7 +194,7 @@ export const Profile = () => {
                 </div>
             </header>
 
-            <PublicationList
+            <ContentList
                 publications={publications}
                 getPublications={getPublications}
                 page={page}
