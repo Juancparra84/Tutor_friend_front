@@ -40,7 +40,7 @@ export const Following = () => {
 
       // Petición al Backend para obtener los usuarios que sigues desde la BD del API Backend - page actualiza la pagina a mostrar
       const response = await fetch(
-        Global.url + "fcontact/contacting/" + userId + "/" + nextPaginate,
+        Global.url + "contact/contacting/" + userId + "/" + nextPaginate,
         {
           method: "GET",
           headers: {
@@ -52,7 +52,7 @@ export const Following = () => {
 
       // Obtener la información retornada por la request
       const data = await response.json();
-
+     
       // Recorrer y limpiar contacts para quedarme con la información de followed_id (usuario seguido)
       let cleanUsers = [];
       data.contacts.forEach((contact) => {

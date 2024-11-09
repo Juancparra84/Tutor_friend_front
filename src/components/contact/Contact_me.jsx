@@ -48,17 +48,16 @@ export const Followers = () => {
           },
         }
       );
-
-      // Obtener la información retornada por la request
+     // Obtener la información retornada por la request
       const data = await response.json();
-
-      // Recorrer y limpiar follows para quedarme con followed_id (seguidores)
+      
+      // Recorrer y limpiar follows para quedarme con follower_id (seguidores)
       let cleanUsers = [];
       data.follows.forEach((follow) => {
-        cleanUsers = [...cleanUsers, follow.followed_id]; // Acceder a followed_id
+        cleanUsers = [...cleanUsers, follow.follower_id]; // Acceder a follower_id
       });
-      data.users = cleanUsers;
-
+      data.users = cleanUsers;  
+      
       // Usar la variable de estado para asignar el array de usuarios que me siguen recibido
       if (data.users && data.status === "success") {
         let newUsers = data.users;
@@ -70,7 +69,7 @@ export const Followers = () => {
 
         // Asignamos a la variable de estado following, el array de usuarios que me sigue
         setFollowing(data.user_contact_me);
-
+       
         // Paginación. Comprobar si existen más usuarios para mostrar en la respuesta de la petición
         if (users.length >= data.total - 5) {
           setMore(false);

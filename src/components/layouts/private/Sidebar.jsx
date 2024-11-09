@@ -35,7 +35,7 @@ export const Sidebar = () => {
     newPublication.user = auth._id;
 
     // Hacer request para guardar en bd
-    const request = await fetch(Global.url + "publication/new-publication", {
+    const request = await fetch(Global.url + "content/new-content", {
         method: "POST",
         body: JSON.stringify(newPublication),
         headers: {
@@ -71,7 +71,7 @@ export const Sidebar = () => {
         const formData = new FormData();
         formData.append("file0", fileInput.files[0]);
 
-        const uploadRequest = await fetch(Global.url + "publication/upload-media/" + data.publicationStored._id, {
+        const uploadRequest = await fetch(Global.url + "content/upload-media/" + data.publicationStored._id, {
             method: "POST",
             body: formData,
             headers: {
@@ -84,6 +84,7 @@ export const Sidebar = () => {
         if(uploadData.status !== "success"){
             setStored("error");
         }
+        console.log(uploadData);
     }
 
      // Resetear el formulario

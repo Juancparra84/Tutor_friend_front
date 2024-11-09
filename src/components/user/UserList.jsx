@@ -18,16 +18,15 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
 
     // Le enviamos el número de página actual al método getUsers
     getUsers(next);
-
   }
 
   // Método para seguir a un usuario
   const follow = async (userId) => {
 
     // Petición Ajax al Backend para seguir a un usuario
-    const request = await fetch(Global.url + "contact/contact", {
+    const request = await fetch(Global.url + "contact/contacting", {
       method: "POST",
-      body: JSON.stringify({ contact_user: userId }),
+      body: JSON.stringify({ followed_user: userId }),
       headers: {
         "Content-Type": "application/json",
         "Authorization": token
@@ -54,7 +53,7 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
   const unfollow = async (userId) => {
 
     // Petición Ajax al Backend para dejar de seguir a un usuario
-    const request = await fetch(Global.url + "contact/uncontact/" + userId, {
+    const request = await fetch(Global.url + "follow/unfollow/" + userId, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

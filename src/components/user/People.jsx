@@ -61,7 +61,7 @@ export const People = () => {
         setUsers(newUsers);
 
         // Obtener la lista de usuarios que sigues y actualizar el estado
-        const followResponse = await fetch(`${Global.url}contact/contacting/${auth._id}`, {
+        const followResponse = await fetch(`${Global.url}contact/following/${auth._id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
