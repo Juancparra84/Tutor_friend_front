@@ -4,6 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import { UserList } from "../user/UserList";
 import { useParams } from "react-router-dom";
 
+
 export const Followers = () => {
   // Variable para almacenar el token para las peticiones a realizar en este componente
   const token = localStorage.getItem("token");
@@ -52,12 +53,13 @@ export const Followers = () => {
       const data = await response.json();
       
       // Recorrer y limpiar follows para quedarme con follower_id (seguidores)
-      let cleanUsers = [];
+      let cleanUsers = []; 
+      
       data.follows.forEach((follow) => {
         cleanUsers = [...cleanUsers, follow.follower_id]; // Acceder a follower_id
       });
       data.users = cleanUsers;  
-      
+  
       // Usar la variable de estado para asignar el array de usuarios que me siguen recibido
       if (data.users && data.status === "success") {
         let newUsers = data.users;
@@ -106,3 +108,6 @@ export const Followers = () => {
     </>
   );
 };
+
+
+console.log(Followers)// no creo pero hagam le = vemos por consola los datos que envi no se ve

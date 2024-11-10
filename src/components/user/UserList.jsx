@@ -53,7 +53,7 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
   const unfollow = async (userId) => {
 
     // Petición Ajax al Backend para dejar de seguir a un usuario
-    const request = await fetch(Global.url + "follow/unfollow/" + userId, {
+    const request = await fetch(Global.url + "contact/uncontact/" + userId, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

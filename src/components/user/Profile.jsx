@@ -77,7 +77,7 @@ export const Profile = () => {
 
     const unfollow = async (userId) => {
         // peticion al backend para borrar el follow
-        const request = await fetch(Global.url + 'follow/unfollow/' + userId, {
+        const request = await fetch(Global.url + 'contact/uncontact/' + userId, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
