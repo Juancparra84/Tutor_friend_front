@@ -56,7 +56,7 @@ export const Profile = () => {
 
     const follow = async (userId) => {
         // peticion al backend para guardar el follow
-        const request = await fetch(Global.url + "follow/save", {
+        const request = await fetch(Global.url + "contact/contact", {
             method: "POST",
             body: JSON.stringify({ followed: userId }),
             headers: {

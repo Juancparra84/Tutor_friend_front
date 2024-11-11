@@ -51,15 +51,16 @@ export const Followers = () => {
       );
      // Obtener la información retornada por la request
       const data = await response.json();
-      
+      console.log('esta es una respuesta01',data);
       // Recorrer y limpiar follows para quedarme con follower_id (seguidores)
       let cleanUsers = []; 
-      
-      data.follows.forEach((follow) => {
-        cleanUsers = [...cleanUsers, follow.follower_id]; // Acceder a follower_id
+      data.follows.forEach((contact) => {
+        cleanUsers = [...cleanUsers, contact.follower_id]; // Acceder a follower_id
       });
+      console.log('esta es una respuesta' ,data);
+      console.log('esta es una respuesta' ,cleanUsers);
       data.users = cleanUsers;  
-  
+console.log(data);
       // Usar la variable de estado para asignar el array de usuarios que me siguen recibido
       if (data.users && data.status === "success") {
         let newUsers = data.users;
@@ -110,4 +111,3 @@ export const Followers = () => {
 };
 
 
-console.log(Followers)// no creo pero hagam le = vemos por consola los datos que envi no se ve

@@ -61,7 +61,7 @@ export const People = () => {
         setUsers(newUsers);
 
         // Obtener la lista de usuarios que sigues y actualizar el estado
-        const followResponse = await fetch(`${Global.url}contact/ing/${auth._id}`, {
+        const followResponse = await fetch(`${Global.url}contact/contacting/${auth._id}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -70,9 +70,10 @@ export const People = () => {
         });
 
         const followData = await followResponse.json();
+        console.log(followData);
 
         if (followData.status === "success") {
-          setFollowing(followData.users_following);
+          setFollowing(followData.users_contacting);
         }
 
         // Paginación. Comprobar si existen más usuarios para mostrar en la respuesta de la petición

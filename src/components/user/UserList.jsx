@@ -24,9 +24,9 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
   const follow = async (userId) => {
 
     // Petición Ajax al Backend para seguir a un usuario
-    const request = await fetch(Global.url + "contact/contacting", {
+    const request = await fetch(Global.url + "contact/contact", {
       method: "POST",
-      body: JSON.stringify({ followed_user: userId }),
+      body: JSON.stringify({ contact_user: userId }),
       headers: {
         "Content-Type": "application/json",
         "Authorization": token
