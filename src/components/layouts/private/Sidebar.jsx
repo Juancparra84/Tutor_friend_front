@@ -53,7 +53,7 @@ export const Sidebar = () => {
         // Actualizar el contador de publicaciones después de crear la publicación
         setCounters((prevCounters) => ({
           ...prevCounters,
-          publicationsCount: prevCounters.publicationsCount + 1, // Incrementa en 1
+          contentsCount: prevCounters.contentsCount + 1, // Incrementa en 1
         }));
 
         // Redirigir a la página de Mis Publicaciones y recargar las publicaciones
@@ -137,7 +137,7 @@ export const Sidebar = () => {
                 <span className="following__title">Siguiendo</span>
                 <span className="following__number">
                   {" "}
-                  {counters.followingCount}{" "}
+                  {counters.contacting}{" "}
                 </span>
               </Link>
             </div>
@@ -146,7 +146,7 @@ export const Sidebar = () => {
                 <span className="following__title">Seguidores</span>
                 <span className="following__number">
                   {" "}
-                  {counters.followedCount}{" "}
+                  {counters.contact_me}{" "}
                 </span>
               </Link>
             </div>
@@ -156,7 +156,7 @@ export const Sidebar = () => {
                 <span className="following__title">Publicaciones</span>
                 <span className="following__number">
                   {" "}
-                  {counters.publicationsCount}{" "}
+                  {counters.contentsCount}{" "}
                 </span>
               </Link>
             </div>

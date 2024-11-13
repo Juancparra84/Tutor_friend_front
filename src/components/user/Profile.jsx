@@ -172,13 +172,13 @@ export const Profile = () => {
                     <div className="stats__following">
                         <Link to={"/rsocial/siguiendo/" + user._id} className="following__link">
                             <span className="following__title">Siguiendo</span>
-                            <span className="following__number">{counters.followingCount >= 1 ? counters.followingCount : 0}</span>
+                            <span className="following__number">{counters.contacting >= 1 ? counters.contacting : 0}</span>
                         </Link>
                     </div>
                     <div className="stats__following">
                         <Link to={"/rsocial/seguidores/" + user._id} className="following__link">
                             <span className="following__title">Seguidores</span>
-                            <span className="following__number">{counters.followedCount >= 1 ? counters.followedCount : 0}</span>
+                            <span className="following__number">{counters.contact_me >= 1 ? counters.contact_me : 0}</span>
                         </Link>
                     </div>
 
@@ -186,7 +186,7 @@ export const Profile = () => {
                     <div className="stats__following">
                         <Link to={"/rsocial/perfil/" + user._id} className="following__link">
                             <span className="following__title">Publicaciones</span>
-                            <span className="following__number">{counters.publicationsCount >= 1 ? counters.publicationsCount : 0}</span>
+                            <span className="following__number">{counters.contentsCount >= 1 ? counters.contentsCount : 0}</span>
                         </Link>
                     </div>
 

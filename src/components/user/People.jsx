@@ -68,17 +68,14 @@ export const People = () => {
             "Authorization": token
           }
         });
-
         const followData = await followResponse.json();
-        console.log(followData);
-
-        if (followData.status === "success") {
+            if (followData.status === "success") {
           setFollowing(followData.users_contacting);
         }
 
         // Paginación. Comprobar si existen más usuarios para mostrar en la respuesta de la petición
         // (data.totalDocs - 10) porque el listado de usuarios ya tiene 10 usuarios en pantalla que no está contabilizando en user.length
-        if (users.length >= data.totalDocs - 10) {
+        if (users.length >= data.totalDocs - 5) {
           setMore(false);
         }
       }

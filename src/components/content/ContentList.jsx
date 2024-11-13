@@ -66,7 +66,7 @@ export const ContentList = ({publications, getPublications, page, setPage, more,
                     // Actualizar el contador de publicaciones después de eliminar la publicación
                     setCounters((prevCounters) => ({
                         ...prevCounters,
-                        publicationsCount: prevCounters.publicationsCount - 1, // Decrementa en 1
+                        contentsCount: prevCounters.contentsCount - 1, // Decrementa en 1
                     }));
 
                 } else {

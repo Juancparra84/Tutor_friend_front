@@ -57,10 +57,10 @@ export const Followers = () => {
       data.follows.forEach((contact) => {
         cleanUsers = [...cleanUsers, contact.follower_id]; // Acceder a follower_id
       });
-      console.log('esta es una respuesta' ,data);
-      console.log('esta es una respuesta' ,cleanUsers);
+      
+      console.log('esta es una respuesta 02' ,cleanUsers);
       data.users = cleanUsers;  
-console.log(data);
+console.log('esta es una respuesta 03',data);
       // Usar la variable de estado para asignar el array de usuarios que me siguen recibido
       if (data.users && data.status === "success") {
         let newUsers = data.users;
@@ -69,10 +69,12 @@ console.log(data);
           newUsers = [...users, ...data.users];
         }
         setUsers(newUsers);
-
+        console.log('respuesta 05', newUsers)
         // Asignamos a la variable de estado following, el array de usuarios que me sigue
         setFollowing(data.user_contact_me);
-       
+        console.log('respuesta 06a', data)
+        console.log('respuesta 06b', data.user_contact_me)
+       console.log('respuesta 06', following)
         // Paginación. Comprobar si existen más usuarios para mostrar en la respuesta de la petición
         if (users.length >= data.total - 5) {
           setMore(false);

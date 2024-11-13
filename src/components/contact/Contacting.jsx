@@ -52,7 +52,7 @@ export const Following = () => {
 
       // Obtener la información retornada por la request
       const data = await response.json();
-      console.log('esta es una respuesta01',data);
+     
       // Recorrer y limpiar contacts para quedarme con la información de followed_id (usuario seguido)
       let cleanUsers = [];
       data.contacts.forEach((contact) => {
@@ -68,7 +68,7 @@ export const Following = () => {
           newUsers = [...users, ...data.users];
         }
         setUsers(newUsers);
-console.log(data);
+
         // Asignamos a la variable de estado following, el array de usuarios que me devolvió el backend
         setFollowing(data.users_contacting);
 

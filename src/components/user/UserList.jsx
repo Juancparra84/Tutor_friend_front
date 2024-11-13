@@ -44,7 +44,7 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
       // Actualizar el contador de "siguiendo" en el contexto
       setCounters(prev => ({
         ...prev,
-        followingCount: prev.followingCount + 1
+        contacting: prev.contacting + 1
       }));
     }
   }
@@ -75,7 +75,7 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
       // Actualizar el contador de "seguidores" en el contexto
       setCounters(prev => ({
         ...prev,
-        followingCount: prev.followingCount - 1
+        contacting: prev.contacting - 1
       }));
 
     }
