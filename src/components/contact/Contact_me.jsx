@@ -57,7 +57,7 @@ export const Followers = () => {
       data.follows.forEach((contact) => {
         cleanUsers = [...cleanUsers, contact.follower_id]; // Acceder a follower_id
       });
-      
+      console.log('esta es una respuesta 02A' ,data.follows);
       console.log('esta es una respuesta 02' ,cleanUsers);
       data.users = cleanUsers;  
 console.log('esta es una respuesta 03',data);

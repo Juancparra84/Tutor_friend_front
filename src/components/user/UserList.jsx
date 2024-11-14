@@ -87,10 +87,10 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
   return (
     <>
       <div className="content__posts">
-        {uniqueUsers.map((user) => (
+        {uniqueUsers.map((user, index) => (
           // Comprobar que user no es undefined
           user && (
-          <article className="posts__post" key={user._id}>
+          <article className="posts__post" key={user._id || index}>
             <div className="post__container">
               <div className="post__image-user">
                 <div className="avatar">
