@@ -30,9 +30,9 @@ export const Feed = () => {
         });
 
         const data = await request.json();
-console.log(data);
-        if (data.status == "success") {
 
+        if (data.status == "success") {
+console.log(data)
             let newPublications = data.publications;
 
             if (!showNews && publications.length >= 1) {

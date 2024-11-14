@@ -31,12 +31,12 @@ export const PublicationDetail = () => {
       const data = await request.json();
 
       // Verificar que la respuesta contenga la publicación y el usuario
-      if (data.status === 'success' && data.publication && data.publication.user) {
-        setPublication(data.publication);
+      if (data.status === 'success' && data.content && data.content.user) {
+        setPublication(data.content);
       } else {
         console.error("Error: publicación o usuario no encontrados.");
       }
-
+console.log(data);
     } catch (error) {
       console.error('Error en la solicitud de la publicación:', error);
     }
