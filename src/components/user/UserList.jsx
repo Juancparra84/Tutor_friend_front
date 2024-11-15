@@ -87,53 +87,52 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
   return (
     <>
       <div className="content__posts">
-        {console.log('Usuarios recibidos en user list', users)}
-        {uniqueUsers.map((user, index) => (
+        {uniqueUsers.map((user) => (
           // Comprobar que user no es undefined
           user && (
-          <article className="posts__post" key={user._id || index}>
-            <div className="post__container">
-              <div className="post__image-user">
-                <div className="avatar">
-                  <div className="general-info__container-avatar">
-                    {user.image && user.image !== "default.png" ? (
-                      <img src={user.image} className="container-avatar__img" alt="Foto de perfil" />
-                    ) : (
-                      <img src={avatar} className="container-avatar__img" alt="Foto de perfil" />
-                    )}
+            <article className="posts__post" key={user._id}>
+              <div className="post__container">
+                <div className="post__image-user">
+                  <div className="avatar">
+                    <div className="general-info__container-avatar">
+                      {user.image && user.image !== "default.png" ? (
+                        <img src={user.image} className="container-avatar__img" alt="Foto de perfil" />
+                      ) : (
+                        <img src={avatar} className="container-avatar__img" alt="Foto de perfil" />
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="post__body">
-                <div className="post__user-info">
-                  <a href="#" className="user-info__name">{user.name} {user.last_name}</a>
-                  <span className="user-info__divider"> | </span>
-                  <a href="#" className="user-info__create-date">{user.created_at}</a>
+                <div className="post__body">
+                  <div className="post__user-info">
+                    <a href="#" className="user-info__name">{user.name} {user.last_name}</a>
+                    <span className="user-info__divider"> | </span>
+                    <a href="#" className="user-info__create-date">{user.created_at}</a>
+                  </div>
+                  <h4 className="post__content">{user.bio}</h4>
                 </div>
-                <h4 className="post__content">{user.bio}</h4>
               </div>
-            </div>
-            {/* Con esta condición, si se muestra el usuario logueado en la lista, no muestra los botones de seguir o dejar de seguir*/}
-            {user._id !== auth._id &&
-              <div className="post__buttons">
+              {/* Con esta condición, si se muestra el usuario logueado en la lista, no muestra los botones de seguir o dejar de seguir*/}
+              {user._id !== auth._id &&
+                <div className="post__buttons">
 
-                {!following?.includes(user._id) &&
-                  <button className="post__button post__button--green"
-                    onClick={() => follow(user._id)} >
-                    Seguir
-                  </button>
-                }
-                {/* Si el usuario ya está en la lista following, muestra "Dejar de Seguir" */}
-                {following?.includes(user._id) &&
-                  <button className="post__button"
-                    onClick={() => unfollow(user._id)} >
-                    Dejar de Seguir
-                  </button>
-                }
-              </div>
-            }
-          </article>
+                  {!following?.includes(user._id) &&
+                    <button className="post__button post__button--green"
+                      onClick={() => follow(user._id)} >
+                      Seguir
+                    </button>
+                  }
+                  {/* Si el usuario ya está en la lista following, muestra "Dejar de Seguir" */}
+                  {following?.includes(user._id) &&
+                    <button className="post__button"
+                      onClick={() => unfollow(user._id)} >
+                      Dejar de Seguir
+                    </button>
+                  }
+                </div>
+              }
+            </article>
           )
         ))}
         <br />

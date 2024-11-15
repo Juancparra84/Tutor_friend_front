@@ -50,8 +50,6 @@ export const ContentList = ({publications, getPublications, page, setPage, more,
                 });
 
                 const data = await request.json();
-                console.log('data revisar', data)
-
                 // Mostrar mensaje de éxito o error
                 if (data.status === "success") {
                     Swal.fire(

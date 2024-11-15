@@ -40,7 +40,7 @@ export const Login = () => {
       // Guardar los datos del token y usuario en el localstorage del navegador
       localStorage.setItem("token", data.token);
       // Asegurarse de almacenar el usuario en formato JSON
-      localStorage.setItem("user", JSON.stringify(data.userBD)); 
+      localStorage.setItem("user", JSON.stringify(data.userBD));
 
       // Seteamos la variable de estado logged si se autenticó correctamente el usuario
       setLogged("logged");

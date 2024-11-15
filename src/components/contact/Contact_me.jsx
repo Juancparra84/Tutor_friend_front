@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { UserList } from "../user/UserList";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 
 export const Followers = () => {
   // Variable para almacenar el token para las peticiones a realizar en este componente
@@ -55,7 +55,7 @@ export const Followers = () => {
      
       // Recorrer y limpiar contacts para quedarme con la información de followed_id (usuario seguido)
       let cleanUsers = [];
-      data.follows.forEach((contact) => {
+      data.contactors.forEach((contact) => {
         cleanUsers = [...cleanUsers, contact.follower_id];
       });
       data.users = cleanUsers;
@@ -70,7 +70,7 @@ export const Followers = () => {
         setUsers(newUsers);
 
         // Asignamos a la variable de estado following, el array de usuarios que me devolvió el backend
-        setFollowing(data.user_contact_me);
+        setFollowing(data.users_contact_me);
 
         // Paginación. Comprobar si existen más usuarios para mostrar en la respuesta de la petición
         if (users.length >= data.total - 5) {
@@ -86,24 +86,13 @@ export const Followers = () => {
     <>
       <header className="content__header">
         <h1 className="content__title">
-          Usuarios que sigue {auth.name} {auth.last_name}{" "}
+          Seguidores de {auth.name} {auth.last_name}{" "}
         </h1>
       </header>
-
-      {/* Si no sigue a ningún usuario, mostrar el mensaje */}
+      {/* Si no tienes seguidores, mostrar el mensaje */}
       {users.length === 0 ? (
-        <div className="no-following-message">
-          <h3>
-            Aún no sigues a ningún usuario en la red social, puedes hacer clic
-            en
-            <strong>
-              <Link to="/rsocial/gente" className="highlight-gente">
-                {" "}
-                Gente{" "}
-              </Link>
-            </strong>
-            para ver el listado de usuarios y seguir a quienes te interese.
-          </h3>
+        <div className="no-followers-message">
+          <h3>Aún no tienes seguidores en la red social.</h3>
         </div>
       ) : (
         <UserList
@@ -120,3 +109,4 @@ export const Followers = () => {
     </>
   );
 };
+
