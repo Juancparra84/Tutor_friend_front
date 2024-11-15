@@ -87,6 +87,7 @@ export const UserList = ({ users, getUsers, following, setFollowing, more, page,
   return (
     <>
       <div className="content__posts">
+        {console.log('Usuarios recibidos en user list', users)}
         {uniqueUsers.map((user, index) => (
           // Comprobar que user no es undefined
           user && (

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { UserList } from "../user/UserList";
 import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+
 
 export const Followers = () => {
   // Variable para almacenar el token para las peticiones a realizar en este componente
@@ -12,7 +12,7 @@ export const Followers = () => {
   // Se recibe la información desde el Contexto a través del hook useAuth
   const { auth, setCounters } = useAuth();
 
-  // Estado para guardar el array de usuarios que sigues recibido desde el backend
+  // Estado para guardar el array de seguidores recibido desde el backend
   const [users, setUsers] = useState([]);
 
   // Estado para guardar la página actual y se va actualizando al hacer clic en el botón mostrar más
@@ -32,15 +32,15 @@ export const Followers = () => {
     getUsers(1);
   }, []);
 
-  // Método para hacer la petición al Backend y obtener los usuarios que sigues
+  // Método para hacer la petición al Backend y obtener los usuarios que me siguen
   const getUsers = async (nextPaginate = 1) => {
     try {
       // Obtener el userId desde la url
       const userId = params.userId;
 
-      // Petición al Backend para obtener los usuarios que sigues desde la BD del API Backend - page actualiza la pagina a mostrar
+      // Petición al Backend para obtener los usuarios que me siguen desde la BD del API Backend - page actualiza la pagina a mostrar
       const response = await fetch(
-        Global.url + "contact/contactors/" + userId + "/" + nextPaginate,
+        Global.url + "contact/contacts/" + userId + "/" + nextPaginate,
         {
           method: "GET",
           headers: {
@@ -49,29 +49,37 @@ export const Followers = () => {
           },
         }
       );
-
       // Obtener la información retornada por la request
       const data = await response.json();
-     
-      // Recorrer y limpiar contacts para quedarme con la información de followed_id (usuario seguido)
+      console.log('esta es una respuesta01', data);
+      // Recorrer y limpiar follows para quedarme con follower_id (seguidores)
       let cleanUsers = [];
       data.follows.forEach((contact) => {
-        cleanUsers = [...cleanUsers, contact.follower_id];
+       cleanUsers = [...cleanUsers, contact.follower_id]; // Acceder a follower_id
+       // cleanUsers.push(contact.follower_id);
       });
+      console.log('esta es una respuesta 02', data.follows);
+      console.log('esta es una respuesta 03', cleanUsers);
       data.users = cleanUsers;
-
-      // Usar la variable de estado para asignar el array de usuarios que sigues recibido
+      console.log('esta es una respuesta 04', data);
+      // Usar la variable de estado para asignar el array de usuarios que me siguen recibido
       if (data.users && data.status === "success") {
-        let newUsers = data.users;
-
-        if (users.length >= 1) {
-          newUsers = [...users, ...data.users];
-        }
-        setUsers(newUsers);
-
-        // Asignamos a la variable de estado following, el array de usuarios que me devolvió el backend
-        setFollowing(data.user_contact_me);
-
+        //let newUsers = data.users;
+        setUsers((prevUsers) => [...prevUsers, ...data.follows]);
+        // if (users.length >= 1) {
+        //   newUsers = [...users, ...data.users];
+        // }
+        // setUsers(newUsers);
+        // Asignamos a la variable de estado following, el array de usuarios que me sigue
+        setFollowing((prevFollowing) => {
+          if (data.user_contact_me && data.user_contact_me.length > 0) {
+            console.log("PrevFollowing", prevFollowing);
+            console.log("data.user_contact_me", data.user_contact_me);
+            return [...prevFollowing, ...data.user_contact_me]
+          }
+          return prevFollowing;
+        });
+        console.log('following', following)
         // Paginación. Comprobar si existen más usuarios para mostrar en la respuesta de la petición
         if (users.length >= data.total - 5) {
           setMore(false);
@@ -86,24 +94,13 @@ export const Followers = () => {
     <>
       <header className="content__header">
         <h1 className="content__title">
-          Usuarios que sigue {auth.name} {auth.last_name}{" "}
+          Seguidores de {auth.name} {auth.last_name}{" "}
         </h1>
       </header>
-
-      {/* Si no sigue a ningún usuario, mostrar el mensaje */}
+      {/* Si no tienes seguidores, mostrar el mensaje */}
       {users.length === 0 ? (
-        <div className="no-following-message">
-          <h3>
-            Aún no sigues a ningún usuario en la red social, puedes hacer clic
-            en
-            <strong>
-              <Link to="/rsocial/gente" className="highlight-gente">
-                {" "}
-                Gente{" "}
-              </Link>
-            </strong>
-            para ver el listado de usuarios y seguir a quienes te interese.
-          </h3>
+        <div className="no-followers-message">
+          <h3>Aún no tienes seguidores en la red social.</h3>
         </div>
       ) : (
         <UserList
@@ -116,7 +113,11 @@ export const Followers = () => {
           setPage={setPage}
           setCounters={setCounters}
         />
-      )}
+        
+      )} 
+      {console.log('usuarios enviados a user list', following)}
     </>
   );
 };
+
+
