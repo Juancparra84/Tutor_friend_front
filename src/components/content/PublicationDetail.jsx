@@ -36,7 +36,7 @@ export const PublicationDetail = () => {
       } else {
         console.error("Error: publicación o usuario no encontrados.");
       }
-console.log(data);
+
     } catch (error) {
       console.error('Error en la solicitud de la publicación:', error);
     }

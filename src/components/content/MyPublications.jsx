@@ -33,15 +33,15 @@ export const MyPublications = () => {
     const data = await request.json();
 
     if (data.status === 'success') {
-      let newPublications = data.publications;
+      let newPublications = data.contents;
 
       if (!reset && publications.length >= 1) {
-        newPublications = [...publications, ...data.publications];
+        newPublications = [...publications, ...data.contents];
       }
 
       setPublications(newPublications);
 
-      if (publications.length >= (data.total - data.publications.length)) {
+      if (publications.length >= (data.total - data.contents.length)) {
         setMore(false);
       }
 

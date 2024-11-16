@@ -33,15 +33,15 @@ export const Feed = () => {
 
         if (data.status == "success") {
 console.log(data)
-            let newPublications = data.publications;
+            let newPublications = data.contents;
 
             if (!showNews && publications.length >= 1) {
-                newPublications = [...publications, ...data.publications];
+                newPublications = [...publications, ...data.contents];
             }
 
             setPublications(newPublications);
 
-            if (!showNews && publications.length >= (data.total - data.publications.length)) {
+            if (!showNews && publications.length >= (data.total - data.contents.length)) {
                 setMore(false);
             }
 

@@ -71,7 +71,7 @@ export const Sidebar = () => {
         const formData = new FormData();
         formData.append("file0", fileInput.files[0]);
 
-        const uploadRequest = await fetch(Global.url + "content/upload-media/" + data.publicationStored._id, {
+        const uploadRequest = await fetch(Global.url + "content/upload-media/" + data.contentStored._id, {
             method: "POST",
             body: formData,
             headers: {
