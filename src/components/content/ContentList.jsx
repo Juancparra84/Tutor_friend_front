@@ -160,7 +160,7 @@ export const ContentList = ({publications, getPublications, page, setPage, more,
             {isProfile && (
                 <div className="content__container-btn">
                     <button className="content__btn-more-post" onClick={() => navigate('/rsocial/feed')}>
-                        Volver al Feed
+                        Volver al Feed de Artículos
                     </button>
                 </div>
             )}

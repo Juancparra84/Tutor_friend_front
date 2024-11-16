@@ -54,7 +54,7 @@ console.log(data)
     return (
         <>
             <header className="content__header">
-                <h1 className="content__title">Timeline</h1>
+                <h1 className="content__title">Artículos</h1>
                 <button className="content__button" onClick={() => getPublications(1, true)}>Mostrar nuevas</button>
             </header>
 

@@ -5,6 +5,14 @@ export const NavPub = () => {
   return (
     <nav className="navbar__container-lists">
       <ul className="container-lists__menu-list">
+      
+      <li className="menu-list__item">
+          <NavLink to="/home" className="menu-list__link">
+            <i className="fa-solid fa-house"></i>
+            <span className="menu-list__title">Inicio</span>
+          </NavLink>
+        </li>
+
         <li className="menu-list__item">
           <NavLink to='/login' className="menu-list__link">
             <i className="fa-solid fa-user"></i>

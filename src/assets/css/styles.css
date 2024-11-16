@@ -1,9 +1,9 @@
 /*ESTILOS GENERALES*/
 :root {
   --color-general-text: #333;
-  --color-backgroud-navbar: #3785e5;
+  --color-backgroud-navbar: #024db7;
   --color-text-navbar: white;
-  --color-hover-navbar: #1756cc;
+  --color-hover-navbar: #71b9de;
 
   --color-border-headers: #eee;
 
@@ -58,7 +58,7 @@ body {
       "nav nav "
       "content aside";
   grid-template-rows: 60px auto auto;
-  grid-template-columns: 70% 30%;
+  /*grid-template-columns: 70% 30%;*/
   width: 100%;
   height: 100%;
   max-height: 80rem;
@@ -88,6 +88,12 @@ body {
   color: var(--color-text-navbar);
 }
 
+.logo__img{
+  width: 70px;
+  height: 60px;
+  overflow: hidden;
+}
+
 .navbar__title{
   font-size: 1.8rem;
   padding: 1.8rem;
@@ -98,6 +104,7 @@ body {
   display: flex;
   justify-content: space-between;
   padding-left: 1.5rem;
+  
 }
 
 .container-lists__menu-list{
@@ -190,6 +197,7 @@ body {
 
 
 .content__posts{
+  justify-content: center; /* Centra el contenido horizontalmente */
   width: 100%;
 }
 
@@ -577,9 +585,9 @@ button{
   width: 100%;
   max-width: 500px; /* Limita el ancho del formulario */
   padding: 2rem; /* Agrega algo de padding alrededor del formulario */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Opcional: agrega una sombra */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Opcional: agrega una sombra */
   border-radius: 10px; /* Opcional: redondea las esquinas */
-  background-color: #fff; /* Opcional: establece un color de fondo */
+  background-color: #a8d1ea; /* Opcional: establece un color de fondo */
   margin: 0 auto; /* Centrar horizontalmente */
 }
 
@@ -596,4 +604,37 @@ button{
   color: var(--color-name-user);
   font-size: 2rem;
   font-weight: bold;
+}
+
+/* src/components/Home/Home.css */
+.home-container {
+    display: grid;
+    place-items: center; /* Centra el contenido horizontal y verticalmente */
+    height: 100vh;
+  }
+
+.home-container img {
+  max-width: 100%; /* Ajusta el tamaño para que la imagen no desborde el contenedor */
+  height: auto;
+}
+
+.home-container h1 {
+  font-size: 3.5rem;
+  color: #333;
+  padding-bottom: 0px;
+}
+
+.home-container p {
+  font-size: 2.2rem;
+  padding-left: 50px;
+  padding-right: 50px;
+  color: #272727;
+}
+
+.banner__img{
+  width: 900px;
+  height: auto;
+  padding-top: 10px;
+  opacity: ;
+  align-content: center;
 }

@@ -76,7 +76,7 @@ export const PublicationDetail = () => {
       <div className="publication-detail-button">
         {location.state?.from === 'feed' ? (
           <Link to="/rsocial/feed">
-            <button className="btn-back">Volver al Feed</button>
+            <button className="btn-back">Volver al Feed de Artículos</button>
           </Link>
         ) : (
           <Link to="/rsocial/mis-publicaciones">

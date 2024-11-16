@@ -153,7 +153,7 @@ export const Sidebar = () => {
 
             <div className="stats__following">
               <Link to={"/rsocial/mis-publicaciones/"} className="following__link">
-                <span className="following__title">Publicaciones</span>
+                <span className="following__title">Artículos</span>
                 <span className="following__number">
                   {" "}
                   {counters.contentsCount}{" "}
@@ -176,7 +176,7 @@ export const Sidebar = () => {
 
             <div className="form-post__inputs">
               <label htmlFor="text" className="form-post__label" >
-                ¿Qué quieres compartir hoy?
+                ¿Qué contenido quieres compartir hoy?
               </label>
               <textarea
                 id="text"
